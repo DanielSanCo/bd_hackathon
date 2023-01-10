@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { GrupoPi } from './grupopi/entities/GrupoPi.entity';
+import { GrupoPi } from './grupopi/entities/grupopi.entity';
 import { GrupoPiModule } from './grupopi/grupopi.module';
 import { Projeto } from './projeto/entities/projeto.entity';
 import { ProjetoModule } from './projeto/projeto.module';

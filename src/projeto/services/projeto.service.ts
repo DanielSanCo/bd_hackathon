@@ -11,13 +11,20 @@ export class ProjetoService {
     ) { }
 
     async findAll(): Promise<Projeto[]> {
-        return await this.projetoRepository.find();
+        return await this.projetoRepository.find({
+            relations: {
+                grupo: true
+            }
+        });
     }
 
     async findById(id: number): Promise<Projeto> {
         let Projeto = await this.projetoRepository.findOne({
             where: {
                 id
+            },
+            relations: {
+                grupo: true
             }
         });
 

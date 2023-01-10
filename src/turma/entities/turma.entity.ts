@@ -1,5 +1,5 @@
 import { IsNotEmpty } from "class-validator"
-import { GrupoPi } from "src/grupopi/entities/GrupoPi.entity"
+import { GrupoPi } from "src/grupopi/entities/grupopi.entity"
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm"
 
 @Entity({ name: "tb_turma"})
@@ -15,10 +15,7 @@ export class Turma {
     @IsNotEmpty()
     @Column({nullable: false})
     isAtivo: boolean
-
     
-    @OneToMany(() => GrupoPi, (grupo) => grupo.id, {
-        onDelete: "CASCADE"
-    })
+    @OneToMany(() => GrupoPi, (Grupo) => Grupo.id)
     grupo: GrupoPi[]
 }

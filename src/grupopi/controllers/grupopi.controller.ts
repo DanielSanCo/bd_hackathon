@@ -1,5 +1,5 @@
-import { Controller, Get, HttpCode, HttpStatus, Param, ParseIntPipe } from "@nestjs/common";
-import { GrupoPi } from "../entities/GrupoPi.entity";
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post, Put } from "@nestjs/common";
+import { GrupoPi } from "../entities/grupopi.entity";
 import { GrupoPiService } from "../services/grupopi.service";
 
 @Controller("/grupos")
@@ -18,4 +18,21 @@ export class GrupoPiController {
         return this.grupoPiService.findById(id);
     }
 
+    @Post()
+    @HttpCode(HttpStatus.CREATED)
+    create(@Body() grupoPi: GrupoPi): Promise<GrupoPi> {
+        return this.grupoPiService.create(grupoPi)
+    }
+
+    @Put()
+    @HttpCode(HttpStatus.OK)
+    update(@Body() grupoPi: GrupoPi): Promise<GrupoPi> {
+        return this.grupoPiService.update(grupoPi);
+    }
+
+    @Delete('/:id')
+    @HttpCode(HttpStatus.NO_CONTENT)
+    delete(@Param('id', ParseIntPipe) id:number) {
+        return this.grupoPiService.delete(id);
+    }
 }

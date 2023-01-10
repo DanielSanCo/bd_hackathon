@@ -17,12 +17,12 @@ export class GrupoPi {
     @Column({ length: 1000, nullable: false })
     maisInfos: string
 
-    @ManyToOne(() => Turma, (turma) => turma.id, {
+    @ManyToOne(() => Turma, (Turma) => Turma.id, {
         onDelete: "CASCADE"
     })
-    turma: Turma
-    
-    @OneToMany(() => Projeto, (projeto) => projeto.id)
+    turma: Turma[]
+
+    @OneToMany(() => Projeto, (Projeto) => Projeto.id)
     projeto: Projeto[]
 
 }

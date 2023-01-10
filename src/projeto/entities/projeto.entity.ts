@@ -1,5 +1,5 @@
 import { IsNotEmpty } from "class-validator"
-import { GrupoPi } from "src/grupopi/entities/GrupoPi.entity"
+import { GrupoPi } from "src/grupopi/entities/grupopi.entity"
 import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm"
 
 @Entity({ name: "tb_projeto"})
@@ -25,9 +25,9 @@ export class Projeto {
     pitProjeto: string
 
     
-    @ManyToOne(() => GrupoPi, (grupo) => grupo.id, {
+    @ManyToOne(() => GrupoPi, (Grupo) => Grupo.id, {
         onDelete: "CASCADE"
     })
-    grupo: GrupoPi
+    grupo: GrupoPi[]
     
 }
