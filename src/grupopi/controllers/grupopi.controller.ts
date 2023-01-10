@@ -17,4 +17,5 @@ export class GrupoPiController {
     findById(@Param('id', ParseIntPipe) id: number): Promise<GrupoPi> {
         return this.grupoPiService.findById(id);
     }
+
 }

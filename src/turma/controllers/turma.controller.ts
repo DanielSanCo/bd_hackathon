@@ -1,4 +1,4 @@
-import { Controller, Get, HttpCode, HttpStatus, Param, ParseIntPipe } from "@nestjs/common";
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post, Put } from "@nestjs/common";
 import { Turma } from "../entities/turma.entity";
 import { TurmaService } from "../services/turma.service";
 
@@ -16,5 +16,23 @@ export class TurmaController {
     @HttpCode(HttpStatus.OK)
     findById(@Param('id', ParseIntPipe) id: number): Promise<Turma> {
         return this.turmaService.findById(id);
+    }
+
+    @Post()
+    @HttpCode(HttpStatus.CREATED)
+    create(@Body() turma: Turma): Promise<Turma> {
+        return this.turmaService.create(turma)
+    }
+
+    @Put()
+    @HttpCode(HttpStatus.OK)
+    update(@Body() turma: Turma): Promise<Turma> {
+        return this.turmaService.update(turma);
+    }
+
+    @Delete('/:id')
+    @HttpCode(HttpStatus.NO_CONTENT)
+    delete(@Param('id', ParseIntPipe) id:number) {
+        return this.turmaService.delete(id);
     }
 }

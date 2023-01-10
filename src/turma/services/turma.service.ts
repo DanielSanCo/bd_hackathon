@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { Repository } from "typeorm";
+import { DeleteResult, Repository } from "typeorm";
 import { Turma } from "../entities/turma.entity";
 
 @Injectable()
@@ -27,5 +27,28 @@ export class TurmaService {
 
     }
 
+    async create(turma: Turma): Promise<Turma> {
+        return await this.turmaRepository.save(turma);
+    }
+
+    //Novo
+    async update(turma: Turma): Promise<Turma> {
+        let buscaTurma: Turma = await this.findById(turma.id);
+
+        if(!buscaTurma || !turma.id)
+            throw new HttpException('Turma não encontrado!', HttpStatus.NOT_FOUND);
+
+        return await this.turmaRepository.save(turma);
+    }
+
+    async delete(id: number): Promise<DeleteResult> {
+
+        let buscaTurma = await this.findById(id);
+
+        if(!buscaTurma)
+            throw new HttpException('Turma não encontrado!', HttpStatus.NOT_FOUND);
+        
+        return await this.turmaRepository.delete(id);
+    }
     
 }
